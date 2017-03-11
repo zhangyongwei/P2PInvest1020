@@ -5,4 +5,11 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/base_head"></include>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:text="我很帅，但是我很低调！！！"/>
 </LinearLayout>
