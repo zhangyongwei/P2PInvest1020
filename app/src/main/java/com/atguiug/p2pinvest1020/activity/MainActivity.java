@@ -12,6 +12,7 @@ import com.atguiug.p2pinvest1020.activity.fragment.HomeFragment;
 import com.atguiug.p2pinvest1020.activity.fragment.InvestFragment;
 import com.atguiug.p2pinvest1020.activity.fragment.MoreFragment;
 import com.atguiug.p2pinvest1020.activity.fragment.PropertyFragment;
+import com.atguiug.p2pinvest1020.activity.utils.AppManager;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -36,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+
+        //添加到AppManager
+        AppManager.getInstance().addActivity(this);
 
         initData();
 

@@ -24,6 +24,10 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
+
+        //初始化为捕获异常
+        CrashHandler.getInstance().init(this);
+
     }
 
     public static Context getContext() {

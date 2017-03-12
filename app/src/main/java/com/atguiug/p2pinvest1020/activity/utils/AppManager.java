@@ -23,6 +23,10 @@ public class AppManager {
 
     private Stack<Activity> stack = new Stack<>();
 
+    /**
+     * 添加
+     * @param activity
+     */
     public void addActivity(Activity activity){
 
         //校验
@@ -32,4 +36,62 @@ public class AppManager {
         }
     }
 
+    /**
+     * 移除
+     * @param activity
+     */
+    public void removeActivity(Activity activity){
+
+        //校验
+
+        if(activity!=null) {
+
+            for (int i = stack.size()-1; i >=0 ; i--) {
+
+                Activity currentActivity = stack.get(i);
+
+                if(currentActivity.getClass()
+                        .equals(activity.getClass())) {
+
+                    currentActivity.finish();
+
+                    stack.remove(currentActivity);
+
+                }
+            }
+        }
+
+    }
+
+    /**
+     * 移除所有
+     */
+    public void removeAll(){
+
+        for (int i = stack.size()-1; i >=0 ; i--) {
+
+            Activity currentActivity = stack.get(i);
+
+            currentActivity.finish();
+
+            stack.remove(currentActivity);
+        }
+    }
+
+    /**
+     * 移除当前的Activity
+     */
+    public void removeCurrentActivity(){
+        //栈中最上面的Activity
+        Activity activity = stack.get(stack.size() - 1);
+
+        activity.finish();
+
+        stack.remove(activity);
+    }
+
+    public int getStackSize(){
+
+        return stack.size();
+    }
 }

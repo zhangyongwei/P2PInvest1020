@@ -7,18 +7,7 @@ import java.util.concurrent.Executors;
  * Created by 张永卫on 2017/3/11.
  */
 
-public class ThreadPool {
-    //私有构造器
-    private  ThreadPool(){};
-    //静态私有唯一的线程池
-    private static  ThreadPool threadPool = new ThreadPool();
-    //提供公共的方法获取
-    public static ThreadPool getInstance(){
-
-        return threadPool;
-    }
-
-    /*
+ /*
     * (1) newCachedThreadPool
         创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程
         (2) newFixedThreadPool
@@ -30,7 +19,16 @@ public class ThreadPool {
     *
     *
     * */
+public class ThreadPool {
+    //私有构造器
+    private  ThreadPool(){};
+    //静态私有唯一的线程池
+    private static  ThreadPool threadPool = new ThreadPool();
+    //提供公共的方法获取
+    public static ThreadPool getInstance(){
 
+        return threadPool;
+    }
 
     private ExecutorService executorService =
             Executors.newCachedThreadPool();

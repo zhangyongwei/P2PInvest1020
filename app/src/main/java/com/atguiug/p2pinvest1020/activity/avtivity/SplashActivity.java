@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.atguiug.p2pinvest1020.R;
 import com.atguiug.p2pinvest1020.activity.MainActivity;
+import com.atguiug.p2pinvest1020.activity.utils.AppManager;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -28,6 +29,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.inject(this);
+
+        AppManager.getInstance().addActivity(this);
 
         initData();
     }
@@ -106,5 +109,13 @@ public class SplashActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return "";
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+       // AppManager.getInstance().removeActivity(this);
+       // AppManager.getInstance().removeCurrentActivity();
     }
 }
