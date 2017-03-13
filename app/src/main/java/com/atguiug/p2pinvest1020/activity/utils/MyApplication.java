@@ -25,8 +25,8 @@ public class MyApplication extends Application {
         super.onCreate();
         context = this;
 
-        //初始化为捕获异常
-        CrashHandler.getInstance().init(this);
+        //初始化为捕获异常 上线的时候才打开
+      //  CrashHandler.getInstance().init(this);
 
     }
 

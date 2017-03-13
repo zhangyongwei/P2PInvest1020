@@ -1,9 +1,7 @@
 package com.atguiug.p2pinvest1020.activity.utils;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Looper;
-import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -27,31 +25,14 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         return crashHandler;
     }
 
-    public void init(Context context){
+    public void init(){
         //把当前的类设置成默认的处理未捕获异常
-        this.mContext = context;
-        this.defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
 
     }
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
-
-//        Log.e("TAG", "uncaughtException:");
-
-        if(e==null) {
-
-            defaultUncaughtExceptionHandler.uncaughtException(t,e);
-        }else{
-
-            handlerException(t,e);
-        }
-
-    }
-
-    private void handlerException(Thread t, Throwable e) {
-
         //必须在主线程执行Toast
         new Thread(){
 
@@ -69,7 +50,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             }
         }.start();
         //搜集异常信息
-        collectionException(e);
+        collection(e);
 
         try {
             //关闭资源
@@ -84,24 +65,26 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }
+
     }
 
-    private void collectionException(Throwable e) {
 
-        final String deciceInfo = Build.DEVICE + ":" + Build.VERSION.SDK_INT
-                + ":" + Build.MODEL + ":" + Build.PRODUCT;
+    private void collection(Throwable e) {
 
-        final String message = e.getMessage();
-
-        new Thread(){
-
-            @Override
-            public void run() {
-                super.run();
-                //可以通过联网将信息发送给后台，所以在分线程执行
-                Log.e("TAG", "deviceInfo:" + deciceInfo + ",message:" + message);
-
-            }
-        }.start();
+//        final String deciceInfo = Build.DEVICE + ":" + Build.VERSION.SDK_INT
+//                + ":" + Build.MODEL + ":" + Build.PRODUCT;
+//
+//        final String message = e.getMessage();
+//
+//        new Thread(){
+//
+//            @Override
+//            public void run() {
+//                super.run();
+//                //可以通过联网将信息发送给后台，所以在分线程执行
+//                Log.e("TAG", "deviceInfo:" + deciceInfo + ",message:" + message);
+//
+//            }
+//        }.start();
     }
 }
