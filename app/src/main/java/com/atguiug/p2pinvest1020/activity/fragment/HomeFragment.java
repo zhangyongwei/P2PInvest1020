@@ -1,14 +1,9 @@
 package com.atguiug.p2pinvest1020.activity.fragment;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,7 +29,7 @@ import butterknife.InjectView;
  * Created by 张永卫on 2017/3/10.
  */
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
 
     @InjectView(R.id.base_title)
     TextView baseTitle;
@@ -52,30 +47,13 @@ public class HomeFragment extends Fragment {
     MyProgress homeProgress;
     private Index index;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        // View view = View.inflate(getActivity(),R.layout.fragment_home,null);
-
-        View view = View.inflate(getActivity(), R.layout.fragment_home, null);
-
-        ButterKnife.inject(this, view);
-
-        return view;
-
-    }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        initData();
-
-        initListener();
+    public int getLayoutid() {
+        return R.layout.fragment_home;
     }
 
-    private void initListener() {
+    public void initListener() {
 
         //初始化title
         baseTitle.setText("首页");
@@ -85,7 +63,7 @@ public class HomeFragment extends Fragment {
         baseSetting.setVisibility(View.INVISIBLE);
     }
 
-    private void initData() {
+    public void initData() {
 
 
         /*
@@ -129,9 +107,9 @@ public class HomeFragment extends Fragment {
 
                 int progress = Integer.parseInt(proInfo.getProgress());
 
-                for (int i = 0; i < progress; i++) {
+                for (int i = 0; i <= progress; i++) {
 
-                    SystemClock.sleep(120);
+                    SystemClock.sleep(20);
 
                     homeProgress.setProgress(i);
 
