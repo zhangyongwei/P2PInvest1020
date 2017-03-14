@@ -3,11 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:textColor="@color/round_red_common"
+    <ListView
+        android:id="@+id/invest_all_lv"
         android:text="All"
-        android:gravity="center"
-        android:textSize="30sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
