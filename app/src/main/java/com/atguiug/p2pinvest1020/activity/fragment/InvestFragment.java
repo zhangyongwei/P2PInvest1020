@@ -88,13 +88,13 @@ public class InvestFragment extends BaseFragment {
 
             case 0:
                 //改变当前的背景色
-                tvInvestAll.setBackgroundColor(Color.BLUE);
+                tvInvestAll.setBackgroundColor(Color.RED);
                break;
             case 1:
                 tvInvestRecommend.setBackgroundColor(Color.BLUE);
                 break;
             case 2:
-                tvInvestHot.setBackgroundColor(Color.BLUE);
+                tvInvestHot.setBackgroundColor(Color.GREEN);
                 break;
         }
 

@@ -4,7 +4,7 @@ import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
 import com.atguiug.p2pinvest1020.R;
-import com.atguiug.p2pinvest1020.activity.adapter.InvestAllAdapter;
+import com.atguiug.p2pinvest1020.activity.adapter.InvestAllAdapter1;
 import com.atguiug.p2pinvest1020.activity.bean.InvestAllBean;
 import com.atguiug.p2pinvest1020.activity.utils.AppNetConfig;
 
@@ -17,7 +17,7 @@ import butterknife.InjectView;
 public class InvestAllFragment extends BaseFragment {
     @InjectView(R.id.invest_all_lv)
     ListView investAllLv;
-    private InvestAllAdapter adapter;
+
 
     @Override
     protected void initListener() {
@@ -29,8 +29,12 @@ public class InvestAllFragment extends BaseFragment {
 
         InvestAllBean investAllBean = JSON.parseObject(json, InvestAllBean.class);
 
+//        //设置适配器
+//        InvestAllAdapter adapter = new InvestAllAdapter(investAllBean.getData());
+//
+//        investAllLv.setAdapter(adapter);
         //设置适配器
-        adapter = new InvestAllAdapter(investAllBean.getData());
+        InvestAllAdapter1 adapter = new InvestAllAdapter1(investAllBean.getData());
 
         investAllLv.setAdapter(adapter);
     }
