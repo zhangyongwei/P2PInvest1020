@@ -77,6 +77,8 @@ public class InvestAllAdapter extends BaseAdapter {
 
         viewHolder.pMinnum.setText(dataBean.getMemberNum());
 
+        viewHolder.pProgresss.setProgress(Integer.parseInt(dataBean.getProgress()));
+
 
         return convertView;
     }

@@ -53,5 +53,11 @@ public class InvestHolder extends BaseHolder<InvestAllBean.DataBean> {
         pMinzouzi.setText(dataBean.getMinTouMoney());
 
         pMinnum.setText(dataBean.getMemberNum());
+
+        int parseInt = Integer.parseInt(dataBean.getProgress());
+
+        pProgresss.setZyw(parseInt);
+
+
     }
 }
