@@ -42,8 +42,6 @@ public class InvestAllFragment extends BaseFragment {
 
         investAllLv.setAdapter(adapter);
 
-
-
     }
 
     @Override
