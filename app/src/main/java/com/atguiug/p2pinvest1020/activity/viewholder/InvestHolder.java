@@ -33,15 +33,25 @@ public class InvestHolder extends BaseHolder<InvestAllBean.DataBean> {
     MyProgress pProgresss;
 
     @Override
-    protected View initView() {
+    public View initView() {
         return UiUtils.getView(R.layout.adapter_invest_all);
     }
 
     @Override
-    protected void setChildData() {
+    public void setChildData() {
 
         InvestAllBean.DataBean dataBean = getT();
 
         pName.setText(dataBean.getName());
+
+        pMoney.setText(dataBean.getMoney());
+
+        pYearlv.setText(dataBean.getYearRate());
+
+        pSuodingdays.setText(dataBean.getSuodingDays());
+
+        pMinzouzi.setText(dataBean.getMinTouMoney());
+
+        pMinnum.setText(dataBean.getMemberNum());
     }
 }

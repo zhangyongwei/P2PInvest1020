@@ -67,6 +67,17 @@ public class InvestAllAdapter extends BaseAdapter {
 
         viewHolder.pName.setText(dataBean.getName());
 
+        viewHolder.pMoney.setText(dataBean.getMoney());
+
+        viewHolder.pYearlv.setText(dataBean.getYearRate());
+
+        viewHolder.pSuodingdays.setText(dataBean.getSuodingDays());
+
+        viewHolder.pMinzouzi.setText(dataBean.getMinTouMoney());
+
+        viewHolder.pMinnum.setText(dataBean.getMemberNum());
+
+
         return convertView;
     }
 

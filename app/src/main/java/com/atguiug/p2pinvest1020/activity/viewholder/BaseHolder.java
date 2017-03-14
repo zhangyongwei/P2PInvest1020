@@ -40,7 +40,7 @@ public abstract class BaseHolder<T> {
         return t;
     }
 
-    protected abstract void setChildData();
+    public abstract void setChildData();
 
-    protected abstract View initView();
+    public abstract View initView();
 }
