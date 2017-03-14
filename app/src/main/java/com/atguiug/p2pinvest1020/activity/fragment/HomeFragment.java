@@ -2,7 +2,6 @@ package com.atguiug.p2pinvest1020.activity.fragment;
 
 import android.content.Context;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,8 +12,6 @@ import com.atguiug.p2pinvest1020.activity.bean.HomeBean;
 import com.atguiug.p2pinvest1020.activity.bean.Index;
 import com.atguiug.p2pinvest1020.activity.ui.MyProgress;
 import com.atguiug.p2pinvest1020.activity.utils.AppNetConfig;
-import com.atguiug.p2pinvest1020.activity.utils.LoadNet;
-import com.atguiug.p2pinvest1020.activity.utils.LoadNetHttp;
 import com.atguiug.p2pinvest1020.activity.utils.ThreadPool;
 import com.squareup.picasso.Picasso;
 import com.youth.banner.Banner;
@@ -53,6 +50,11 @@ public class HomeFragment extends BaseFragment {
         return R.layout.fragment_home;
     }
 
+    @Override
+    public String getChildUrl() {
+        return AppNetConfig.INDEX;
+    }
+
     public void initListener() {
 
         //初始化title
@@ -63,41 +65,23 @@ public class HomeFragment extends BaseFragment {
         baseSetting.setVisibility(View.INVISIBLE);
     }
 
-    public void initData() {
+    @Override
+    protected void initData(String json) {
 
+        HomeBean homeBean = JSON.parseObject(json, HomeBean.class);
 
-        /*
-        * 二次封装
-        * 为什么要二次封装
-        *
-        * 第一  调用的方便
-        * 第二  修改和维护方便
-        * */
-        LoadNet.getDataPost(AppNetConfig.INDEX, new LoadNetHttp() {
+        tvHomeProduct.setText(homeBean.getProInfo().getName());
 
-            @Override
-            public void success(String context) {
+        tvHomeYearrate.setText(homeBean.getProInfo().getYearRate()+"%");
+        //注意：展示UI一定要判断是不是主线程
+        initProgress(homeBean.getProInfo());
 
-                HomeBean homeBean = JSON.parseObject(context, HomeBean.class);
-
-//              tvHomeYearrate.setText(Double.parseDouble(homeBean.getProInfo().getYearRate()) / 100 + "%");
-                tvHomeYearrate.setText(homeBean.getProInfo().getYearRate() + "%");
-
-                tvHomeProduct.setText(homeBean.getProInfo().getName());
-
-                //注意：展示UI一定要判断是不是主线程
-                initProgress(homeBean.getProInfo());
-
-                initBanner(homeBean);
-            }
-
-            @Override
-            public void failure(String error) {
-                Log.i("http", "failure: " + error);
-            }
-        });
+        initBanner(homeBean);
 
     }
+
+
+
 
     private void initProgress(final HomeBean.ProInfoBean proInfo) {
 

@@ -23,10 +23,14 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.e("TAG", "111111111111111111111");
         context = this;
+        mainThread = new Thread();
+        threadid = android.os.Process.myPid();
+        handler = new Handler();
 
         //初始化为捕获异常 上线的时候才打开
-      //  CrashHandler.getInstance().init(this);
+//        CrashHandler.getInstance().init();
 
     }
 

@@ -14,9 +14,9 @@ import android.widget.ScrollView;
  */
 
 public class MyScrollView extends ScrollView {
-    
+
     private View childView;
-    
+
     private int lastY;
 
     public MyScrollView(Context context) {
@@ -52,7 +52,7 @@ public class MyScrollView extends ScrollView {
 
                 break;
             case MotionEvent.ACTION_MOVE:
-                
+
                 if(isNeedMove()) {
 
                     int dy = eventY - lastY;//移动的距离
@@ -182,7 +182,7 @@ public class MyScrollView extends ScrollView {
 
         //拿到滑动的距离  往下滑动是变小 往上滑动是变大
         int scrollY = getScrollY();
-        
+
         if(scrollY<=0 || scrollY>=dy) {
 
                 return true;
