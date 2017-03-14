@@ -4,7 +4,7 @@ import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
 import com.atguiug.p2pinvest1020.R;
-import com.atguiug.p2pinvest1020.activity.adapter.InvestAllAdapter1;
+import com.atguiug.p2pinvest1020.activity.adapter.InvestAllAdapter2;
 import com.atguiug.p2pinvest1020.activity.bean.InvestAllBean;
 import com.atguiug.p2pinvest1020.activity.utils.AppNetConfig;
 
@@ -33,10 +33,17 @@ public class InvestAllFragment extends BaseFragment {
 //        InvestAllAdapter adapter = new InvestAllAdapter(investAllBean.getData());
 //
 //        investAllLv.setAdapter(adapter);
-        //设置适配器
-        InvestAllAdapter1 adapter = new InvestAllAdapter1(investAllBean.getData());
+//        //设置适配器
+//        InvestAllAdapter1 adapter = new InvestAllAdapter1(investAllBean.getData());
+//
+//        investAllLv.setAdapter(adapter);
+
+        InvestAllAdapter2 adapter = new InvestAllAdapter2(investAllBean.getData());
 
         investAllLv.setAdapter(adapter);
+
+
+
     }
 
     @Override
