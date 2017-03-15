@@ -1,9 +1,9 @@
 package com.atguiug.p2pinvest1020.activity.avtivity;
 
-import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -17,10 +17,9 @@ import com.atguiug.p2pinvest1020.activity.utils.AppManager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity{
 
     @InjectView(R.id.main_rg)
     RadioGroup mainRg;
@@ -32,24 +31,11 @@ public class MainActivity extends AppCompatActivity {
     private MoreFragment moreFragment;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
-
-        //添加到AppManager
-        AppManager.getInstance().addActivity(this);
-
-        initData();
-
-        initListener();
-    }
 
     /**
      * 初始化监听
      */
-    private void initListener() {
+    public void initListener() {
 
         mainRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -151,9 +137,28 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 初始化数据
      */
-    private void initData() {
+    public  void initData() {
+
+        //添加AppManager
+        AppManager.getInstance().addActivity(this);
         //默认选择的fragment
         switchFragment(R.id.rb_main);
+    }
+
+    @Override
+    public void initTitle() {
+
+    }
+
+    @Override
+    public int getLayoutid() {
+
+        //去掉窗口标题
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //隐藏顶部的状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        return R.layout.activity_main;
     }
 
     /**
