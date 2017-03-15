@@ -71,11 +71,7 @@ public class SplashActivity extends BaseActivity {
                 if(isLogin()) {
 
                     //登录过进入主界面
-
-                    //动画执行完后进行跳转
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    //启动动画
-                    startActivity(intent);
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     //关闭当前页面
                     finish();
                 }else{

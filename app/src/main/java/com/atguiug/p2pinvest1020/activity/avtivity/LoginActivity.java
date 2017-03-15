@@ -58,6 +58,14 @@ public class LoginActivity extends BaseActivity {
 
             }
         });
+
+        loginRegitsterTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(LoginActivity.this,RegesterActivity.class));
+            }
+        });
     }
 
     private void login() {

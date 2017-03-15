@@ -1,5 +1,7 @@
 package com.atguiug.p2pinvest1020.activity.fragment;
 
+import com.atguiug.p2pinvest1020.R;
+
 /**
  * Created by 张永卫on 2017/3/10.
  */
@@ -19,7 +21,8 @@ public class MoreFragment extends BaseFragment {
 
     @Override
     public int getLayoutid() {
-        return 0;
+
+        return R.layout.fragment_more;
     }
 
     @Override
