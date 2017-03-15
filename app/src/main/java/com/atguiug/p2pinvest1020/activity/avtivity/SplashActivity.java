@@ -3,6 +3,7 @@ package com.atguiug.p2pinvest1020.activity.avtivity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.text.TextUtils;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.RelativeLayout;
@@ -81,6 +82,8 @@ public class SplashActivity extends BaseActivity {
 
                     //没有登录过进入登录界面
                     startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+
+                    finish();
                 }
 
             }
@@ -96,7 +99,13 @@ public class SplashActivity extends BaseActivity {
 
     private boolean isLogin() {
 
-        return false;
+        String name = getUser().getData().getName();
+
+        if(TextUtils.isEmpty(name)) {
+
+            return false;
+        }
+        return true;
     }
 
     /**

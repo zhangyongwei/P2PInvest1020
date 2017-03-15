@@ -1,5 +1,6 @@
 package com.atguiug.p2pinvest1020.activity.avtivity;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -9,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.atguiug.p2pinvest1020.R;
+import com.atguiug.p2pinvest1020.activity.bean.UserInfo;
 import com.atguiug.p2pinvest1020.activity.utils.AppNetConfig;
 import com.atguiug.p2pinvest1020.activity.utils.LoadNet;
 import com.atguiug.p2pinvest1020.activity.utils.LoadNetHttp;
@@ -50,46 +54,75 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                //校验
-                String phone = loginEtNumber.getText().toString().trim();
+                login();
 
-                String pw = loginEtPwd.getText().toString().trim();
+            }
+        });
+    }
 
-                if(TextUtils.isEmpty(phone)) {
+    private void login() {
 
-                    showToast("账号不能为空");
+        //校验
+        String phone = loginEtNumber.getText().toString().trim();
 
-                    return;
+        String pw = loginEtPwd.getText().toString().trim();
+
+        if (TextUtils.isEmpty(phone)) {
+
+            showToast("账号不能为空");
+
+            return;
+        }
+        if (TextUtils.isEmpty(pw)) {
+
+            showToast("密码不能为空");
+
+            return;
+        }
+
+        //去服务器登录
+        Map<String, String> map = new HashMap<String, String>();
+
+        map.put("phone", phone);
+
+        map.put("password", pw);
+
+        LoadNet.getDataPost(AppNetConfig.LOGIN, map, new LoadNetHttp() {
+
+            @Override
+            public void success(String context) {
+
+                Log.i("TAG", "success:" + context);
+
+                JSONObject jsonObject = JSON.parseObject(context);
+
+                Boolean success = jsonObject.getBoolean("success");
+
+                if(success) {
+
+                    //解析数据
+                    UserInfo userInfo = JSON.parseObject(context, UserInfo.class);
+
+                    //保存数据到sp
+                    saveUser(userInfo);
+
+                    //跳转
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    //结束当前页面
+                    finish();
+
+                }else{
+
+                    showToast("账号不存在或者密码错误！");
                 }
-                if(TextUtils.isEmpty(pw)) {
 
-                    showToast("密码不能为空");
+            }
 
-                    return;
-                }
+            @Override
+            public void failure(String error) {
 
-                //去服务器登录
-                Map<String,String> map = new HashMap<String, String>();
+                Log.e("TAG", "error:" + error);
 
-                map.put("phone",phone);
-
-                map.put("password",pw);
-
-                LoadNet.getDataPost(AppNetConfig.LOGIN,map,new LoadNetHttp(){
-
-                    @Override
-                    public void success(String context) {
-
-                        Log.i("TAG", "success:"+context);
-                    }
-
-                    @Override
-                    public void failure(String error) {
-
-                        Log.e("TAG", "error:"+error);
-
-                    }
-                });
             }
         });
 
