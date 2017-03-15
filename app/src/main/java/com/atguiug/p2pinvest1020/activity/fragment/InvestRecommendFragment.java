@@ -1,11 +1,14 @@
 package com.atguiug.p2pinvest1020.activity.fragment;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
 import com.atguiug.p2pinvest1020.R;
 import com.atguiug.p2pinvest1020.activity.ui.randomLayout.StellarMap;
 import com.atguiug.p2pinvest1020.activity.utils.UiUtils;
+
+import java.util.Random;
 
 import butterknife.InjectView;
 
@@ -31,6 +34,8 @@ public class InvestRecommendFragment extends BaseFragment {
     private String[] oneDatas = new String[datas.length/2];
 
     private String[] twoDatas = new String[datas.length-datas.length/2];    
+
+    private Random random = new Random();
 
     @Override
     protected void initData(String json) {
@@ -119,6 +124,13 @@ public class InvestRecommendFragment extends BaseFragment {
                 tv.setText(twoDatas[position]);
             }
 
+            int red = random.nextInt(211);//颜色值0-255
+
+            int green = random.nextInt(211);
+
+            int blue = random.nextInt(211);
+
+            tv.setTextColor(Color.rgb(red,green,blue));
 
             return tv;
         }
