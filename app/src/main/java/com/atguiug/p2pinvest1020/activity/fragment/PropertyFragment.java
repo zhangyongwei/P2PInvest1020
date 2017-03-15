@@ -1,6 +1,6 @@
 package com.atguiug.p2pinvest1020.activity.fragment;
 
-import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -9,11 +9,12 @@ import com.atguiug.p2pinvest1020.R;
 import com.atguiug.p2pinvest1020.activity.avtivity.MainActivity;
 import com.atguiug.p2pinvest1020.activity.bean.UserInfo;
 import com.atguiug.p2pinvest1020.activity.utils.AppNetConfig;
-import com.atguiug.p2pinvest1020.activity.utils.BitmapUtils;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
 
 import butterknife.InjectView;
+import jp.wasabeef.picasso.transformations.BlurTransformation;
+import jp.wasabeef.picasso.transformations.ColorFilterTransformation;
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 /**
  * Created by 张永卫on 2017/3/10.
@@ -58,27 +59,35 @@ public class PropertyFragment extends BaseFragment {
         //设置用户名
         tvMeName.setText(user.getData().getName());
 
-        //设置头像
+//        //设置头像
+//        Picasso.with(getActivity())
+//                .load(AppNetConfig.BASE_URL+"/images/tx.png")
+//                .transform(new Transformation() {
+//                    @Override
+//                    public Bitmap transform(Bitmap bitmap) {
+//
+//                        Bitmap circleBitmap = BitmapUtils.circleBitmap(bitmap);
+//
+//                        bitmap.recycle();//必须把原来的释放掉
+//
+//                        return circleBitmap;
+//                    }
+//
+//                    @Override
+//                    public String key() {
+//                        return "";//不能为空否则会报错
+//                    }
+//                })
+//                .into(ivMeIcon);
+
         Picasso.with(getActivity())
                 .load(AppNetConfig.BASE_URL+"/images/tx.png")
-                .transform(new Transformation() {
-                    @Override
-                    public Bitmap transform(Bitmap bitmap) {
-
-                        Bitmap circleBitmap = BitmapUtils.circleBitmap(bitmap);
-
-                        bitmap.recycle();//必须把原来的释放掉
-
-                        return circleBitmap;
-                    }
-
-                    @Override
-                    public String key() {
-                        return "";//不能为空否则会报错
-                    }
-                })
+                .transform(new CropCircleTransformation())
+                .transform(new ColorFilterTransformation(
+                        Color.parseColor("#66FFccFF")))
+                //第二个参数值越大越模糊
+                .transform(new BlurTransformation(getActivity(),6))
                 .into(ivMeIcon);
-
     }
 
     @Override
