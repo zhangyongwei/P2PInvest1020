@@ -1,4 +1,4 @@
-package com.atguiug.p2pinvest1020.activity;
+package com.atguiug.p2pinvest1020.activity.avtivity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;

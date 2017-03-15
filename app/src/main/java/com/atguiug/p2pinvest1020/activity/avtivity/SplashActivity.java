@@ -3,46 +3,49 @@ package com.atguiug.p2pinvest1020.activity.avtivity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.atguiug.p2pinvest1020.R;
-import com.atguiug.p2pinvest1020.activity.MainActivity;
 import com.atguiug.p2pinvest1020.activity.utils.AppManager;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     @InjectView(R.id.splash_tv_version)
     TextView splashTvVersion;
     @InjectView(R.id.activity_splash)
     RelativeLayout activitySplash;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        ButterKnife.inject(this);
+    public void initListener() {
 
-        AppManager.getInstance().addActivity(this);
-
-        initData();
     }
 
-    private void initData() {
+    public void initData() {
 
+        AppManager.getInstance().addActivity(this);
         //设置版本号
         setVersion();
 
         //设置动画
         setAnimation();
 
+    }
+
+    @Override
+    public void initTitle() {
+
+    }
+
+    @Override
+    public int getLayoutid() {
+
+        return R.layout.activity_splash;
     }
 
     /**
@@ -60,16 +63,26 @@ public class SplashActivity extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
 
             }
-
+            //动画执行完
             @Override
             public void onAnimationEnd(Animation animation) {
 
-                //动画执行完后进行跳转
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                //启动动画
-                startActivity(intent);
-                //关闭当前页面
-                finish();
+                if(isLogin()) {
+
+                    //登录过进入主界面
+
+                    //动画执行完后进行跳转
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    //启动动画
+                    startActivity(intent);
+                    //关闭当前页面
+                    finish();
+                }else{
+
+                    //没有登录过进入登录界面
+                    startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+                }
+
             }
 
             @Override
@@ -79,6 +92,11 @@ public class SplashActivity extends AppCompatActivity {
         });
 
         activitySplash.startAnimation(animation);
+    }
+
+    private boolean isLogin() {
+
+        return false;
     }
 
     /**

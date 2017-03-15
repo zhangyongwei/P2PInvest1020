@@ -1,31 +1,32 @@
 package com.atguiug.p2pinvest1020.activity.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import com.atguiug.p2pinvest1020.R;
 
 /**
  * Created by 张永卫on 2017/3/10.
  */
 
-public class PropertyFragment extends Fragment {
+public class PropertyFragment extends BaseFragment {
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void initListener() {
 
+    }
 
-        TextView textView = new TextView(getActivity());
+    @Override
+    protected void initData(String json) {
 
-        textView.setText("PropertyFragment");
+    }
 
-        textView.setGravity(Gravity.CENTER);
+    @Override
+    public int getLayoutid() {
 
-        return textView;
+        return R.layout.fragment_property;
+    }
+
+    @Override
+    public String getChildUrl() {
+        return null;
     }
 }
