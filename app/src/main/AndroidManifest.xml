@@ -48,7 +48,8 @@
         <activity android:name=".activity.avtivity.RegesterActivity" />
         <activity android:name=".activity.avtivity.LineChartActivity" />
         <activity android:name=".activity.avtivity.ColumnActivity" />
-        <activity android:name=".activity.avtivity.PieActivity"></activity>
+        <activity android:name=".activity.avtivity.PieActivity" />
+        <activity android:name=".activity.avtivity.ReChargeActivity"></activity>
     </application>
 
 </manifest>

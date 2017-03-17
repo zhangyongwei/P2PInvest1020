@@ -12,6 +12,7 @@ import com.atguiug.p2pinvest1020.activity.avtivity.ColumnActivity;
 import com.atguiug.p2pinvest1020.activity.avtivity.LineChartActivity;
 import com.atguiug.p2pinvest1020.activity.avtivity.MainActivity;
 import com.atguiug.p2pinvest1020.activity.avtivity.PieActivity;
+import com.atguiug.p2pinvest1020.activity.avtivity.ReChargeActivity;
 import com.atguiug.p2pinvest1020.activity.bean.UserInfo;
 import com.atguiug.p2pinvest1020.activity.utils.AppNetConfig;
 import com.squareup.picasso.Picasso;
@@ -83,9 +84,18 @@ public class PropertyFragment extends BaseFragment {
 
             }
         });
+        //充值的监听
+        recharge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getActivity(),ReChargeActivity.class));
+            }
+        });
     }
 
     @Override
+
     protected void initData(String json) {
 
         initListener();
