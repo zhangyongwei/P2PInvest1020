@@ -1,17 +1,12 @@
 package com.atguiug.p2pinvest1020.activity.utils.pay;
 
 /**
- * Created by 张永卫on 2017/3/17.
- */
-
-/**
  * Created by Administrator on 2015/9/28.
  * 提示：如何获取安全校验码和合作身份者id
  * 1.用您的签约支付宝账号登录支付宝网站(www.alipay.com)
  * 2.点击“商家服务”(https://b.alipay.com/order/myorder.htm)
  * 3.点击“查询合作者身份(pid)”、“查询安全校验码(key)”
  */
-
 public class PayKeys {
     //
     // 请参考 Android平台安全支付服务(msp)应用开发接口(4.2 RSA算法签名)部分，
@@ -28,5 +23,4 @@ public class PayKeys {
     //公钥
     public static final String PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+dY2sUIcVvT51qVvp8+sie+rafXhhV5nxp7sTCvj5sf6mr3bHsFziwXyNjkgkd/U88cDGLwplK567dH1Umu5m5WzaLNhZzDPYo58fG7AAIZvouwSobmhzLpySh+vS/g++d8x9z9WCIdJcuQ5wK91j6h8nad/OKgb2/DUvU2stBwIDAQAB";
 }
-
 

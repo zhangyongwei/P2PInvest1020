@@ -63,7 +63,11 @@ public class ImageSettingActivity extends BaseActivity {
         btnUserLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /**
+                 将SP清除
+                 将File删除
+                 销毁所有的Activity
+                 重新进入主界面*/
                 clearFile();
 
                 clearSp();
