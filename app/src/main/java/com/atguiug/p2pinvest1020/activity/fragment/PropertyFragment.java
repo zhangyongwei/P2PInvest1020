@@ -1,7 +1,10 @@
 package com.atguiug.p2pinvest1020.activity.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.Environment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,7 +20,13 @@ import com.atguiug.p2pinvest1020.activity.avtivity.ReChargeActivity;
 import com.atguiug.p2pinvest1020.activity.avtivity.WithDrawActivity;
 import com.atguiug.p2pinvest1020.activity.bean.UserInfo;
 import com.atguiug.p2pinvest1020.activity.utils.AppNetConfig;
+import com.atguiug.p2pinvest1020.activity.utils.BitmapUtils;
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import butterknife.InjectView;
 import jp.wasabeef.picasso.transformations.BlurTransformation;
@@ -91,7 +100,7 @@ public class PropertyFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getActivity(),ReChargeActivity.class));
+                startActivity(new Intent(getActivity(), ReChargeActivity.class));
             }
         });
         //提现的监听
@@ -99,7 +108,7 @@ public class PropertyFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getActivity(),WithDrawActivity.class));
+                startActivity(new Intent(getActivity(), WithDrawActivity.class));
             }
         });
 
@@ -108,7 +117,7 @@ public class PropertyFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getActivity(),ImageSettingActivity.class));
+                startActivity(new Intent(getActivity(), ImageSettingActivity.class));
             }
         });
 
@@ -149,13 +158,73 @@ public class PropertyFragment extends BaseFragment {
 //                .into(ivMeIcon);
 
         Picasso.with(getActivity())
-                .load(AppNetConfig.BASE_URL+"/images/tx.png")
+                .load(AppNetConfig.BASE_URL + "/images/tx.png")
                 .transform(new CropCircleTransformation())
                 .transform(new ColorFilterTransformation(
                         Color.parseColor("#66FFccFF")))
                 //第二个参数值越大越模糊
-                .transform(new BlurTransformation(getActivity(),6))
+                .transform(new BlurTransformation(getActivity(), 6))
                 .into(ivMeIcon);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        MainActivity activity = (MainActivity) getActivity();
+
+        Boolean update = activity.isUpdate();
+
+        if (update) {
+
+            File filesDir = null;
+
+            FileInputStream is = null;
+
+
+            //输出流
+            try {
+
+                if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+
+                    filesDir = getActivity().getExternalFilesDir("");
+
+                } else {
+
+                    filesDir = getActivity().getFilesDir();
+                }
+
+                //全路径
+                File path = new File(filesDir, "123.png");
+
+
+                if (path.exists()) {
+
+                    is = new FileInputStream(path);
+
+                    //第一个参数是图片的格式，第二个参数是图片的质量数值大的大质量高，第三个是输出流
+                    Bitmap bitmap = BitmapFactory.decodeStream(is);
+
+                    Bitmap circleBitmap = BitmapUtils.circleBitmap(bitmap);
+
+                    ivMeIcon.setImageBitmap(circleBitmap);
+
+                    activity.saveImage(false);
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }finally {
+
+                try {
+                    if(is!=null) {
+
+                        is.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override

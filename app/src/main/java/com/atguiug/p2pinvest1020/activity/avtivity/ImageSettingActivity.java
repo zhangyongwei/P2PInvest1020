@@ -24,6 +24,11 @@ import android.widget.TextView;
 import com.atguiug.p2pinvest1020.R;
 import com.atguiug.p2pinvest1020.activity.utils.BitmapUtils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import butterknife.InjectView;
 
 public class ImageSettingActivity extends BaseActivity {
@@ -40,6 +45,8 @@ public class ImageSettingActivity extends BaseActivity {
     TextView tvUserChange;
     @InjectView(R.id.btn_user_logout)
     Button btnUserLogout;
+    private File filesDir;
+    private FileOutputStream os;
 
     @Override
     public void initListener() {
@@ -133,6 +140,39 @@ public class ImageSettingActivity extends BaseActivity {
 
     private void saveImage(Bitmap bitmap) {
 
+        try {
+            if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+
+                //外部存储路径
+                filesDir = getExternalFilesDir("");
+
+            }else{
+                //内部存储路径
+                filesDir  = getFilesDir();
+            }
+
+            //全路径
+            File path = new File(filesDir,"123.png");
+            //输出流
+            os = new FileOutputStream(path);
+            //第一个参数是图片的格式，第二个参数是图片的质量数值大的大质量高，第三个是输出流
+            bitmap.compress(Bitmap.CompressFormat.PNG,100,os);
+            //保存当前是否有更新
+            saveImage(true);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }finally {
+
+            if(os!=null) {
+
+                try {
+                    os.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override
