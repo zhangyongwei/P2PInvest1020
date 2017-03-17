@@ -43,9 +43,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.avtivity.MainActivity"/>
+        <activity android:name=".activity.avtivity.MainActivity" />
         <activity android:name=".activity.avtivity.LoginActivity" />
-        <activity android:name=".activity.avtivity.RegesterActivity"></activity>
+        <activity android:name=".activity.avtivity.RegesterActivity" />
+        <activity android:name=".activity.avtivity.LineChartActivity"></activity>
     </application>
 
 </manifest>

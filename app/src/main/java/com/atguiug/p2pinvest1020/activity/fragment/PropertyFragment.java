@@ -1,11 +1,14 @@
 package com.atguiug.p2pinvest1020.activity.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.atguiug.p2pinvest1020.R;
+import com.atguiug.p2pinvest1020.activity.avtivity.LineChartActivity;
 import com.atguiug.p2pinvest1020.activity.avtivity.MainActivity;
 import com.atguiug.p2pinvest1020.activity.bean.UserInfo;
 import com.atguiug.p2pinvest1020.activity.utils.AppNetConfig;
@@ -46,11 +49,40 @@ public class PropertyFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
+        /**
+         * 投资管理
+         */
+        llTouzi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                startActivity(new Intent(getActivity(), LineChartActivity.class));
+            }
+        });
+        /**
+         * 投资管理(直观)
+         */
+        llTouziZhiguan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        /**
+         * 资产
+         */
+        llZichan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
     protected void initData(String json) {
+
+        initListener();
 
         MainActivity activity = (MainActivity) getActivity();
 
