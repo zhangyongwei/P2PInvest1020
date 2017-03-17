@@ -73,33 +73,31 @@ public class ReChargeActivity extends BaseActivity {
 
                 String money = s.toString().trim();
 
-                if(TextUtils.isEmpty(money)) {
+                if (TextUtils.isEmpty(money)) {
 
                     //设置充值不可点击
                     btnChongzhi.setClickable(false);
                     //设置充值的背景颜色
                     btnChongzhi.setBackgroundResource(R.drawable.btn_02);
 
-                }else{
+                } else {
 
                     //设置充值可点击
                     btnChongzhi.setClickable(true);
                     //设置充值的背景颜色
                     btnChongzhi.setBackgroundResource(R.drawable.btn_01);
 
+                    //充值的点击事件
+                    btnChongzhi.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            //调支付宝
+                            AliPayUtils.getInstance().pay(ReChargeActivity.this, "1");
+                        }
+                    });
                 }
             }
-        });
-
-        //充值的点击事件
-        btnChongzhi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //调支付宝
-                AliPayUtils.getInstance().pay(ReChargeActivity.this, "1");
-            }
-
         });
     }
 
