@@ -59,6 +59,20 @@ public class ImageSettingActivity extends BaseActivity {
                 changeUserIcon();
             }
         });
+
+        btnUserLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                clearFile();
+
+                clearSp();
+
+                removeAllActivity();
+
+                startActivity(new Intent(ImageSettingActivity.this,LoginActivity.class));
+            }
+        });
     }
 
     private String changeName[] = {"拍照", "相册"};
