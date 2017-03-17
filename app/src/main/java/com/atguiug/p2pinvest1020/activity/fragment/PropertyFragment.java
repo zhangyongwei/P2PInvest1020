@@ -8,8 +8,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.atguiug.p2pinvest1020.R;
+import com.atguiug.p2pinvest1020.activity.avtivity.ColumnActivity;
 import com.atguiug.p2pinvest1020.activity.avtivity.LineChartActivity;
 import com.atguiug.p2pinvest1020.activity.avtivity.MainActivity;
+import com.atguiug.p2pinvest1020.activity.avtivity.PieActivity;
 import com.atguiug.p2pinvest1020.activity.bean.UserInfo;
 import com.atguiug.p2pinvest1020.activity.utils.AppNetConfig;
 import com.squareup.picasso.Picasso;
@@ -66,6 +68,8 @@ public class PropertyFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 
+                startActivity(new Intent(getActivity(), ColumnActivity.class));
+
             }
         });
         /**
@@ -74,6 +78,8 @@ public class PropertyFragment extends BaseFragment {
         llZichan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                startActivity(new Intent(getActivity(), PieActivity.class));
 
             }
         });

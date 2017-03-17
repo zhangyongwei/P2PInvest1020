@@ -46,7 +46,9 @@
         <activity android:name=".activity.avtivity.MainActivity" />
         <activity android:name=".activity.avtivity.LoginActivity" />
         <activity android:name=".activity.avtivity.RegesterActivity" />
-        <activity android:name=".activity.avtivity.LineChartActivity"></activity>
+        <activity android:name=".activity.avtivity.LineChartActivity" />
+        <activity android:name=".activity.avtivity.ColumnActivity" />
+        <activity android:name=".activity.avtivity.PieActivity"></activity>
     </application>
 
 </manifest>
