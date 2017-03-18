@@ -61,7 +61,10 @@
             android:exported="false"
             android:screenOrientation="behind" />
         <activity android:name=".activity.avtivity.WithDrawActivity" />
-        <activity android:name=".activity.avtivity.ImageSettingActivity"></activity>
+        <activity android:name=".activity.avtivity.ImageSettingActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"/>
+        <activity android:name=".activity.avtivity.GestureEditActivity"></activity>
+        <activity android:name=".activity.avtivity.GestureVerifyActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,8 @@
 package com.atguiug.p2pinvest1020.activity.avtivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -76,17 +79,29 @@ public class WithDrawActivity extends BaseActivity {
                     btnTixian.setClickable(true);
 
                     btnTixian.setBackgroundResource(R.drawable.btn_01);
-                }
-            }
-        });
-        /**
-         * 提现设置点击事件
-         */
-        btnTixian.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Toast.makeText(WithDrawActivity.this, "提现申请成功", Toast.LENGTH_SHORT).show();
+                    /**
+                     * 提现设置点击事件
+                     */
+                    btnTixian.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            SharedPreferences sp = getSharedPreferences("tog_state", Context.MODE_PRIVATE);
+
+                            boolean isOpen = sp.getBoolean("isOpen", false);
+
+                            //验证手势密码
+                            if(isOpen) {
+
+                                startActivity(new Intent(WithDrawActivity.this,GestureVerifyActivity.class));
+                            }else{
+
+                                Toast.makeText(WithDrawActivity.this, "提现成功", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
             }
         });
     }
@@ -109,6 +124,7 @@ public class WithDrawActivity extends BaseActivity {
 
     @Override
     public int getLayoutid() {
+
         return R.layout.activity_with_draw;
     }
 
