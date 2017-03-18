@@ -70,17 +70,26 @@ public class SplashActivity extends BaseActivity {
 
                 if(isLogin()) {
 
-                    //登录过进入主界面
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                    //关闭当前页面
-                    finish();
-                }else{
+                    //登录进入主界面
 
-                    //没有登录过进入登录界面
-                    startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+                    startActivity(new Intent(SplashActivity.this,MainActivity.class));
 
                     finish();
                 }
+
+//                if(isLogin()) {
+//
+//                    //登录过进入主界面
+//                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//                    //关闭当前页面
+//                    finish();
+//                }else{
+//
+//                    //没有登录过进入登录界面
+//                    startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+//
+//                    finish();
+//                }
 
             }
 

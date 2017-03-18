@@ -179,8 +179,22 @@ public class MoreFragment extends BaseFragment {
         initTitle();
 
         initListener();
+
+        setTogState();//设置选择状态
 //        //设置手势密码
 //        startActivity(new Intent(getActivity(), GestureEditActivity.class));
+    }
+
+    /**
+     * 设置button状态
+     */
+    private void setTogState() {
+
+        SharedPreferences sp = getActivity().getSharedPreferences("tog_state", Context.MODE_PRIVATE);
+
+        boolean isOpen = sp.getBoolean("isOpen", false);
+
+        toggleMore.setChecked(isOpen);
     }
 
     private void initTitle() {
