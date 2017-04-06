@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/P2PInvest1020.iml" filepath="$PROJECT_DIR$/P2PInvest1020.iml" />
       <module fileurl="file://$PROJECT_DIR$/alipay_demo/alipay_demo.iml" filepath="$PROJECT_DIR$/alipay_demo/alipay_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/retrofitdemo/retrofitdemo.iml" filepath="$PROJECT_DIR$/retrofitdemo/retrofitdemo.iml" />
     </modules>
   </component>
 </project>

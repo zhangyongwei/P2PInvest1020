@@ -32,14 +32,11 @@ public abstract class LoadingPager extends FrameLayout {
         init();
     }
 
-
-
     public LoadingPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         init();
     }
-
 
     private int STATE_LOADING = 1;//加载中
     private int STATE_ERROR = 2;//加载失败
@@ -133,6 +130,7 @@ public abstract class LoadingPager extends FrameLayout {
     /**
      * 根据不同的网络状态加载相应的页面
      */
+
     public void loadData(){
 
         //加载网络

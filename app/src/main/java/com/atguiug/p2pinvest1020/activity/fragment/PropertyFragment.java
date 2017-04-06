@@ -157,8 +157,8 @@ public class PropertyFragment extends BaseFragment {
 //                })
 //                .into(ivMeIcon);
 
-        Picasso.with(getActivity())
-                .load(AppNetConfig.BASE_URL + "/images/tx.png")
+            Picasso.with(getActivity())
+                    .load(AppNetConfig.BASE_URL + "/images/tx.png")
                 .transform(new CropCircleTransformation())
                 .transform(new ColorFilterTransformation(
                         Color.parseColor("#66FFccFF")))

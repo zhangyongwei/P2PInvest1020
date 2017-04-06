@@ -13,6 +13,7 @@ import com.atguiug.p2pinvest1020.activity.utils.AppManager;
 import java.io.File;
 
 import butterknife.ButterKnife;
+import cn.sharesdk.framework.ShareSDK;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -27,6 +28,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
 
         initListener();
+
+        //初始化ShareSDK
+        ShareSDK.initSDK(this);
     }
 
     public abstract void initListener();
